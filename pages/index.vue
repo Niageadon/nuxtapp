@@ -14,6 +14,7 @@ import { DataService } from '@/services'
 import { UserCart, Shop } from '@/components'
 import Vue from 'vue'
 import Component from 'vue-class-component'
+import { Goods } from '../models'
 
 @Component({
   components: {
@@ -22,9 +23,10 @@ import Component from 'vue-class-component'
   },
 })
 export default class MainPage extends Vue {
-  goods = DataService.getAll()
+  goods: Goods[] = []
   usdCourse: number = Math.random()
-  created() {
+  async created() {
+    this.goods = await DataService.getAll()
     setInterval(() => {
       this.usdCourse = Math.random()
     }, 15000)

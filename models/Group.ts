@@ -1,21 +1,22 @@
 import { JsonType, JsonProperty, JsonObject, JsonConverter } from 'ta-json'
-import { EntityConverter } from '@/models/converters'
+import { GroupConverter } from '@/models/converters'
 
 @JsonObject()
-export class CategoryItem {
+export class GroupItem {
   @JsonProperty('N')
   @JsonType(String)
   name?: string
 }
 
 @JsonObject()
-export class Category {
+export class Group {
   @JsonProperty('G')
   @JsonType(String)
   name?: string
 
   @JsonProperty('B')
   @JsonType(Array)
-  @JsonConverter(new EntityConverter<CategoryItem>(CategoryItem))
-  itemList?: CategoryItem[]
+  // @ts-ignore
+  @JsonConverter(GroupConverter)
+  itemList?: Record<string, GroupItem>
 }
