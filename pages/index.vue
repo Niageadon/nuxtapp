@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">
-      <shop :items="goods" />
+      <shop :items="goods" @add-to-cart="addToCart" />
     </v-col>
     <v-col cols="12" sm="8" md="6">
       <user-cart :model="goods" :convert-course="usdCourse" />
@@ -30,6 +30,10 @@ export default class MainPage extends Vue {
     setInterval(() => {
       this.usdCourse = Math.random()
     }, 15000)
+  }
+
+  addToCart(v: Goods) {
+    console.log(1111, v)
   }
 }
 </script>

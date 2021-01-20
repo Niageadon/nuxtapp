@@ -6,6 +6,7 @@
         v-for="item in itemList"
         :key="'product-item-' + item.id"
         :item="item"
+        @add="$emit('add', item)"
       />
     </v-card-text>
   </v-card>

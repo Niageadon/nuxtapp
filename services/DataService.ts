@@ -23,9 +23,9 @@ class DataService {
     const groupMap = GroupService.getAll()
     return resp.Value.Goods.map((el) => {
       // Мапим имена товаров из групп
-      if (el.groupId.toString() in groupMap) {
-        const groupItemList = groupMap[el.groupId.toString()].itemList ?? {}
-        if (el.id.toString() in groupItemList) {
+      if (el.groupId in groupMap) {
+        const groupItemList = groupMap[el.groupId].itemList ?? {}
+        if (el.id in groupItemList) {
           el.name = groupItemList[el.id.toString()].name
         }
       }

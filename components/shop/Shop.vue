@@ -5,6 +5,7 @@
       :key="`group-` + groupId"
       :name="el.name"
       :item-list="groupItemList(groupId)"
+      @add="$emit('add-to-cart', $event)"
     />
   </div>
 </template>
@@ -22,10 +23,14 @@ import ShopCategory from './ShopCategory.vue'
 export default class Shop extends Vue {
   @Prop(Array) items: Goods[]
   get groupList() {
-    return GroupService.getAll()
+    return Object.fromEntries(
+      Object.entries(GroupService.getAll()).filter(([key]) =>
+        this.items.map((el) => el.groupId).includes(parseInt(key))
+      )
+    )
   }
 
-  groupItemList(groupId: string) {
+  groupItemList(groupId: string): Goods[] {
     return this.items.filter((el: Goods) => el.groupId === parseInt(groupId))
   }
 }

@@ -3,10 +3,10 @@ import { TaJson } from 'ta-json'
 const groupList = require('@/assets/names.json')
 
 class GroupService {
-  getAll(): Record<string, Group> {
+  getAll(): Record<number, Group> {
     return Object.fromEntries(
       Object.entries(groupList).map(([key, el]) => {
-        return [key, TaJson.deserialize<Group>(el, Group)]
+        return [parseInt(key), TaJson.deserialize<Group>(el, Group)]
       })
     )
   }
