@@ -18,9 +18,14 @@ export class Goods {
   @JsonType(Number)
   inStock: number
 
+  count: number = 1
   groupName?: string
   name?: string
   B: boolean
   CV: any
   Pl: any
+
+  constructor() {
+    this.count = 1
+  }
 }
